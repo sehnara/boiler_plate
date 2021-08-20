@@ -1,16 +1,16 @@
-
-
 const express = require('express');
 const app = express();
 const bbpp = require('body-parser');
 const port = 5000;
+
+const config = require("./config/key");
 
 const {User} = require("./models/User");
 app.use(bbpp.urlencoded({extended:true})); // 클라이언트에서 오는 정보를 서버에서 분석하도록
 app.use(bbpp.json()); // json 타입의 정보를 분석할 수 있도록
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://sehoon:abcd1234@boiler-plate.7ltub.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
+mongoose.connect(config.mongoURI,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useCreateIndex:true,
